@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SkolaWebAppGoran.Models.Seminar>
+
+<h2><b>Dostupni Seminari:</b></h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            <div class="form-inline">
+                @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Upišite traženi pojam...." })
+                <input type="submit" class="btn btn-primary" value="Pretraži" />
+            </div>
+        </p>
+    }
+
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Odaberi", "Predbiljezba", new { seminarId = item.IdSeminar })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opis)
+        </td>
+        <td>
+            @item.Datum.ToShortDateString()
+        </td>
+    </tr>
+}
+
+</table>

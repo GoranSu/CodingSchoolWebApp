@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SkolaWebAppGoran.Models.Predbiljezba>
+
+<h2>Pregled Predbilježbi:</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <div class="form-inline">
+            @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Upišite traženi pojam...." })
+            <input type="submit" class="btn btn-primary" value="Pretraži" />
+        </div>
+    </p>
+}
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seminar.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prezime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Odaberi", "EditPredbiljezba", new { id = item.IdPredbiljezba })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seminar.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prezime)
+        </td>
+        <td>
+            @item.Datum.ToShortDateString()
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+    </tr>
+}
+
+</table>

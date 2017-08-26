@@ -1,0 +1,81 @@
+﻿@model SkolaWebAppGoran.Models.Predbiljezba
+
+<h3>Jeste li sigurni da želite izbrisati ovu predbilježbu?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Naziv:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seminar.Naziv)
+        </dd>
+
+        <dt>
+            Datum:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datum)
+        </dd>
+
+        <dt>
+            Ime:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ime)
+        </dd>
+
+        <dt>
+            Prezime:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prezime)
+        </dd>
+
+        <dt>
+            Adresa:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresa)
+        </dd>
+
+        <dt>
+            Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Telefon:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+
+        <dt>
+            Status:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Briši" class="btn btn-default" /> |
+            @Html.ActionLink("Nazad na listu", "Index")
+        </div>
+    }
+</div>

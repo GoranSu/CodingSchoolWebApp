@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SkolaWebAppGoran.Models.Seminar>
+
+<h2>Pregled Seminara:</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <div class="form-inline">
+            @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Upišite traženi pojam...." })
+            <input type="submit" class="btn btn-primary" value="Pretraži" />
+        </div>
+    </p>
+         
+}
+    <p>
+        <a href="@Url.Action("Create", "Home")" class="btn btn-success btn-md">
+            <span class="glyphicon glyphicon-plus"></span> Kreiraj novi seminar
+        </a>
+    </p>
+       
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zaposlenik.Ime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Popunjen)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Uredi", "EditSeminar", new { id = item.IdSeminar }) |
+            @Html.ActionLink("Briši", "SeminarDelete", new { id = item.IdSeminar })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zaposlenik.Ime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opis)
+        </td>
+        <td>
+            @item.Datum.ToShortDateString()
+        </td>
+        <td>
+            @if (item.Popunjen == true)
+            {
+                @Html.Raw("Da");
+            }
+            else
+            {
+                @Html.Raw("Ne");
+            }
+        </td>
+    </tr>
+}
+</table>
